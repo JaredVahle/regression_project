@@ -4,7 +4,7 @@ import numpy as np
 from scipy import stats
 from sklearn.feature_selection import SelectKBest, f_regression, RFE
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.linear_model import LinearRegression
 
 
@@ -14,8 +14,8 @@ def remove_outliers(df):
     we use these because they are part of our mvp.
     '''
     new_df = df[(np.abs(stats.zscore(df['sqft'])) < 3)]
-    new_df = df[(np.abs(stats.zscore(df['baths'])) < 3)]
-    new_df = df[(np.abs(stats.zscore(df['beds'])) < 3)]
+    new_df = df[(np.abs(stats.zscore(df['bathrooms'])) < 3)]
+    new_df = df[(np.abs(stats.zscore(df['bedrooms'])) < 3)]
     new_df = df[(np.abs(stats.zscore(df['tax_value'])) < 3)]
     return new_df
 
@@ -44,7 +44,7 @@ def standard_scaler(X_train, X_validate, X_test):
     Returns scaler, X_train_scaled, X_validate_scaled, X_test_scaled dfs
     """
 
-    scaler = sklearn.preprocessing.StandardScaler().fit(X_train)
+    scaler = StandardScaler().fit(X_train)
     X_train_scaled = pd.DataFrame(scaler.transform(X_train), index = X_train.index, columns = X_train.columns)
     X_validate_scaled = pd.DataFrame(scaler.transform(X_validate), index = X_validate.index, columns = X_validate.columns)
     X_test_scaled = pd.DataFrame(scaler.transform(X_test), index = X_test.index, columns = X_test.columns)

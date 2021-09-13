@@ -14,10 +14,11 @@ def create_zillow_data():
 SELECT *
 FROM properties_2017
 JOIN predictions_2017 using(parcelid)
-WHERE transactiondate between "2017-05-01" and "2017-08-31" and propertylandusetypeid in (260,261,263,265,266,275)
+WHERE transactiondate between "2017-05-01" and "2017-08-31" and propertylandusetypeid in (261);
     '''
-    df = pd.read_sql(sql_query, get_connection("zillow"))
-return df
+    df = pd.read_sql(query, get_connection("zillow"))
+    return df
+
 
 def get_zillow_data():
     '''
@@ -45,7 +46,7 @@ def clean_zillow_data(df):
     #rename columns
     df = df.rename(columns={
                             'calculatedfinishedsquarefeet': 'sqft',
-                            'bathroomcnt': 'bathroomss',
+                            'bathroomcnt': 'bathrooms',
                             'bedroomcnt': 'bedrooms',
                             'taxvaluedollarcnt':'tax_value',
                             'yearbuilt':'year_built',
