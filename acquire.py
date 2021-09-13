@@ -29,3 +29,30 @@ def get_zillow_data():
         df = create_zillow_data()
         df.to_csv("zillow.csv")
     return df
+
+
+def clean_zillow(df):
+    '''
+    this function takes in an unclean zillow df and does the following:
+    - keeps only columns we need for the project
+    - renames columns
+    - drops nulls
+    '''
+    #selecting the features
+    features = ['calculatedfinishedsquarefeet', 'bathroomcnt', 'bedroomcnt', 'taxvaluedollarcnt','yearbuilt','taxamount','fips']
+    df = df[features]
+
+    #rename columns
+    df = df.rename(columns={
+                            'calculatedfinishedsquarefeet': 'sqft',
+                            'bathroomcnt': 'bathroomss',
+                            'bedroomcnt': 'bedrooms',
+                            'taxvaluedollarcnt':'tax_value',
+                            'yearbuilt':'year_built',
+                            'taxamount': 'tax_amount'
+        
+    })
+    #drop nulls
+    df = df.dropna()
+    
+    return df
