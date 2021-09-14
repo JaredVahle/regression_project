@@ -1,7 +1,21 @@
 # Zillow Regression Project
 
-## Executive Summary
+### Executive Summary
+I was able to create a regression model that beat out the baseline for predicting homes in the california area. It preformed with an R^2 value of 0.386 and an RMSE on out of sample data of 294683.58
 
+##### Top Predictors:
+- Square Footage
+- Number of bathrooms
+- Number of bedrooms
+##### Model Information:
+- Type: Lasso Lars
+- Alpha = 1
+- RMSE: 294683.58
+- R^2: 0.3859
+##### Background Info:
+- Single unit properties
+- Data gathered between May-Aug 2017
+- Counties: Los Angeles, Orange, Ventura
 ##### Our main predictors for house prices
 - 1) Square footage
 - 2) Number of bathrooms
@@ -55,6 +69,7 @@
 |year_built|dtype('Float64')|The year the house was built|
 |tax_amount|dtype('Float64')|The amount that was paid in tax|
 |fips|dtype('Float64')|Indentifies geographic areas|
+|lot_size_sqft|dtype('Float64')|Gives total square footage of the lot|
 
 ## Hypotheses
 ### Alpha
@@ -65,6 +80,7 @@
 - 3) The more bedrooms a house has, the higher the price.
 - 4) The more bathrooms a house has, the higher the price.
 - 5) The location will have an affect on the price.
+- 6) The size of the lot will affect the price.
 
 ## Data Science Pipeline
 #### Planning
@@ -101,19 +117,23 @@
 
 ## Project Reproduction
 - Random state or seed = **174**, and is used in my models and my split functions.
-- In replication making use of the user defined function, in cunjunction with  my documented process should give a good guide and presaved models, and helpful functions that will make the process faster.
+- In replication making use of the user defined function, in cunjunction with my documented process, and presaved models should give a good guide.The functions that will make the process faster.
 - Create and use your own env file that connects you to the sql database.
 - Run the zillow_final jupyter notebook with all the .py files.
 
-## Summary
+## Conclusion
 
 ### Key takeaways
-
+- Square footage seems to have the largest relationship on prices, followed by bathrooms, bedrooms.
+- The year built has a relationship with the data although it was small.
+- All three counties have similar tax rates, but LA has the highest.
 ### Model takeaways
-
-### Recommendations
-
+- Type: Lasso lars model
+- My alpha was set to 1
+- R^2: 0.386
+- RMSE: 294683.58
 ### Moving forward
+- I will continue to master regression modeling and attempt to make better models that can beat out my model set as the new baseline.
 ##### If given more time
 - I would continue exploring other factors that might play a role in house pricing.
 - I would create a more efficent model using my current model as the baseline.
