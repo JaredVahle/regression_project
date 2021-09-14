@@ -93,3 +93,14 @@ def plot_pairplot(df, cols, descriptive=None, hue=None):
     pairplot.fig.suptitle('Correlation of Continuous Variables', y=1.08)
     plt.show()
 
+def corr_two_vars(df,x,y):
+    r, p = stats.pearsonr(df[x],df[y])
+    print(f"p-value:{round(p,5)}")
+    print(f"R: {round(r,4)}")
+    scatter_plot = df.plot.scatter(x,y)
+    scatter_plot.figure.set_dpi(300)
+    plt.title(f"{x}'s relationship with {y}")
+    if p < .05:
+        print("This correlation is statistically significant")
+
+    return r,p
