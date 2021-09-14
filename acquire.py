@@ -1,6 +1,8 @@
 import os
 import pandas as pd
 import env
+import numpy as np
+from scipy import stats
 
 def get_connection(db, user=env.user, host=env.host, password=env.password):
     return f'mysql+pymysql://{user}:{password}@{host}/{db}'
@@ -43,7 +45,6 @@ def clean_zillow_data(df):
     #selecting the features
     features = ['calculatedfinishedsquarefeet', 'bathroomcnt', 'bedroomcnt', 'taxvaluedollarcnt','yearbuilt','taxamount','fips','lotsizesquarefeet']
     df = df[features]
-
     #rename columns
     df = df.rename(columns={
                             'calculatedfinishedsquarefeet': 'sqft',
@@ -59,6 +60,7 @@ def clean_zillow_data(df):
     df = df.dropna()
     
     return df
+
 
 def zip_code_zillow(df):
     '''
@@ -82,6 +84,10 @@ def zip_code_zillow(df):
     
     return df
 
+
+
 def remove_tax_outliers(df):
+    # Removes outliers for tax amount and tax value
     new_df = df[(np.abs(stats.zscore(df['tax_amount'])) < 3)]
     new_df = df[(np.abs(stats.zscore(df['tax_value'])) < 3)]
+    return df

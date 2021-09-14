@@ -1,14 +1,14 @@
 # Zillow Regression Project
 
 ### Executive Summary
-I was able to create a regression model that beat out the baseline for predicting homes in the california area. It preformed with an R^2 value of 0.386 and an RMSE on out of sample data of 294683.58
+I was able to create a regression model that beat out the baseline for predicting homes in the california area. It preformed with an R^2 value of 0.3859 and an RMSE on out of sample data of 294674.89
 
 ##### Top Predictors:
 - Square Footage
 - Number of bathrooms
 - Number of bedrooms
 ##### Model Information:
-- Type: Lasso Lars
+- Type: Linear regression
 - Alpha = 1
 - RMSE: 294683.58
 - R^2: 0.3859
@@ -21,14 +21,10 @@ I was able to create a regression model that beat out the baseline for predictin
 - 2) Number of bathrooms
 - 3) Number of bedrooms
 
-##### I investigated streaming services and additional services.
-- Our streaming services had a higher rate of churn then our normal churn rate indicating some kind of customer dissatisfaction with the service.
-- I also found that our churn rate for additional services had higher churn rates in those that had 1-2 additional services and much lower churn rates in customers with 4-6.
-- This indicates we need further inspection into the 6 additional columns.
-
-##### For my model I used ()
-- The RMSE was ()
-- The baseline RMSE was ()
+##### Linear Regression Model vs Baseline
+- The RMSE was 294674.89763495134
+- The baseline RMSE was 378143.31047048484
+- RMSE difference of 83468
 
 ## Project Description
 - I will be running zillow data through the data science pipeline. I am trying to build a model that will predict house prices, using a linear regression model. I will be preparing the data and making decisions on what data will be applicable to my model and finding leading drivers for home pricing. I will also create a csv returning the county, and state for each residence in the given data.
